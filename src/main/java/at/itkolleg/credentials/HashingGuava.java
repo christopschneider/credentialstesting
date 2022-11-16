@@ -1,24 +1,23 @@
 package at.itkolleg.credentials;
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 /**
- * Diese konkrete Dekorierer Klasse HashingGuava legt eine konkrete Hashing Variante vor
+ * Diese konkrete Dekorierer Klasse HashingGuava gibt eine konkrete Hashing Variante vor
  */
 public class HashingGuava extends HashDecorator{
-
     /**
-     * Konstruktor überreicht das mitgegebene Interface ExportCredentials an die Mutterklasse HashDecorator
-     * @param exportCredentials ein Interface von ExportCredentials
+     * Konstruktor überreicht die mitgegebene zu dekorierende Export Variante an die Mutterklasse HashDecorator
+     * @param exportCredentials zu dekorierende Export Variante
      */
     public HashingGuava(ExportCredentials exportCredentials) {
         super(exportCredentials);
     }
 
     /**
-     * Ruft die Mutterklassen Methode export auf und übergibt eine Liste von Credentials
-     * @param credentialsList Liste von Credentials
+     * Implementiert die konkrete Hash Export Strategie. Von der übergebenen Liste wird das klartext Passwort gehasht
+     * Ruft die Mutterklassen Methode "export" auf und übergibt die Credentials Liste mit dem gehashten Passwort
+     * @param credentialsList Liste von Credentials, mit noch im klartext stehendem Passwort
      */
     @Override
     public void export(List<Credentials> credentialsList) {
