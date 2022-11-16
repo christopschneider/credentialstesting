@@ -1,6 +1,5 @@
 package at.itkolleg.credentials;
 import com.google.common.hash.Hashing;
-
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,19 +22,12 @@ public class HashingGuava extends HashDecorator{
      */
     @Override
     public void export(List<Credentials> credentialsList) {
-        List<Credentials> credentialsListHashed = new ArrayList<>();
-
-        for (Credentials credential : credentialsList){
-            Credentials c = new Credentials(credential.getHost(),"PWW",credential.getUser());
-            credentialsListHashed.add(c);
-
+        for(Credentials credential : credentialsList){
             String sha256hex = Hashing.sha256()
                     .hashString(credential.getPwd(), StandardCharsets.UTF_8)
                     .toString();
-
-            System.out.println(sha256hex);
+            credential.setPwd(sha256hex);
         }
-
-        exportCredentials.export(credentialsListHashed);
+        exportCredentials.export(credentialsList);
     }
 }
