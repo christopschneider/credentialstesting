@@ -4,7 +4,7 @@ package at.itkolleg.credentials;
  */
 public abstract class HashDecorator implements ExportCredentials{
     // Hält das Interface ExportCredentials
-    private ExportCredentials exportCredentials;
+    protected ExportCredentials exportCredentials;
 
     /**
      * Konstruktur setzt das Datenfeld ExportCredentials mit dem übergebenen Interface ExportCredentials
